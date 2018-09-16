@@ -1,0 +1,170 @@
+﻿#include <iostream>
+using namespace std;
+
+
+int main() {
+	
+//	=========================================================================================
+//	||	1.	All variables are SHORT TYPE													||
+//	||		--------------------MENU------------------										||
+//	||		Drinks………………………….$2																||
+//	||		Sandwiches…………………….$4															||
+//	||		How many drinks ? 3																||
+//	||		How many sandwiches : 3															||
+//	||		Your total bill $18																||
+//	=========================================================================================
+
+	short drinkPrice = 2, sandwichPrice = 4, numDrink, numSandwich, total;
+	cout << "Drink................ $" << drinkPrice << endl;
+	cout << "Sandwiches........... $" << sandwichPrice << endl;
+	cout << "How many drinks      : ";
+	cin >> numDrink;
+	cout << "How many sandwiches  : ";
+	cin >> numSandwich;
+
+	_asm {
+		mov ax, drinkPrice;			// eax = 2
+		imul ax, numDrink;				// eax = 2*numDrink
+		mov bx, sandwichPrice;			// ebx = 4
+		imul bx, numSandwich;			// ebx = 4*numSandwich
+		add ax, bx;					// eax = 2*numDrink + 4*numSandwich
+		mov total, ax;					// total = 2*numDrink + 4*numSandwich
+	}
+
+	cout << "Your total bill: $" << total << "\n\n" ;
+
+//  =========================================================================================
+//	||	2.     All sides are INT TYPE														||
+//	||																						||
+//	||				/|\                 ------------------------							||
+//	||			   / | \                |                      |							||
+//	||		 a    /  |  \  b            |                      | width						||
+//	||			 / h |   \              |                      |							||
+//	||			/    |    \             |                      |							||
+//	||	    	------------ 			------------------------							||
+//	||			c                           length											||
+//	||																						||
+//	||	Enter the values of a, b, c, and h  for the triangle : 4  6   9   10				||
+//	||	Enter the length and the width of the rectangle : 15  10							||
+//	||	Triangle																			||
+//	||	Area……………………………………45																||
+//	||	Perimeter…………………………..19																||
+//	||	Rectangle																			||
+//	||	Area………………………………….150																||
+//	||	Perimeter ………………………….50																||
+//	||	95 F⁰ is  35 C⁰																		||
+//   =========================================================================================
+	int a, b, c, h, two = 2, rlength, rwidth;
+	int tArea, tPerimeter, rArea, rPerimeter;
+
+	cout << "Enter the values of a,b,c and h for the triangle: ";
+	cin >> a >> b >> c >> h;
+
+	cout << "Enter the length and the width of the rectangle: ";
+	cin >> rlength >> rwidth;
+
+	_asm {
+
+		// Calculate triangle area
+		mov eax, h;					// ax = h
+		imul eax, c;				// ax = h * c
+		cdq;
+		idiv two;					// ax = (h * c)/2
+		mov tArea, eax;				// tArea = (h * c)/2
+
+		// Calculate triangle perimeter
+		mov eax, a;					// ax = a
+		add eax, b;					// ax = a + b
+		add eax, c;					// ax = a + b + c
+		mov tPerimeter, eax;		// tArea = a + b + c
+
+		// Calculate rectangle perimeter
+		mov eax, rlength;
+		add eax, rwidth;
+		imul two;
+		mov rPerimeter, eax;
+		// Calculate rectangle area
+		mov eax, rwidth;
+		//cdq;
+		imul rlength;
+		mov rArea, eax;
+		
+	}
+
+	cout << "Triangle \n";
+	cout << "\t Area ............. " << tArea << endl;
+	cout << "\t Perimeter ........ " << tPerimeter << endl;
+
+	cout << endl;
+
+	cout << "Rectangle \n";
+	cout << "\t Area ............. " << rArea << endl;
+	cout << "\t Perimeter ........ " << rPerimeter << "\n\n";
+
+//	=========================================================================================
+//	||	3.Use the following formula for the temperature conversion : C = 5(F - 32) / 9,		||
+//	||	C and F are type short																||
+//	||	Enter temperature in Fahrenheit : 95												||
+//	||	95 F⁰ is  35 C⁰																		||
+//	==========================================================================================
+
+
+	short C, F;
+	int Fdegree, Cdegree;
+		cout << "Enter temperature in Fahrenheit: ";
+		cin >> Fdegree;
+	_asm {
+		
+		mov eax, Fdegree;				// eax = Fdegree
+		mov ebx, 32;					// ebx = 32
+		sub eax, ebx;					// eax = eax - ebx --> F-32
+		mov ebx, 5;						// ebx = 5
+		imul ebx;						// eax = eax * 5	-->5(F-32)
+		mov ebx, 9;
+		idiv ebx;						// eax = eax / 9
+		mov Cdegree, eax;
+	}
+
+	cout << Fdegree << " F" << char(248) << " is " << Cdegree << " C" << char(248) << "\n\n";
+
+//	=========================================================================================
+//	||	4. Enter a 3 digit int number : 358													||
+//	||	The total of digits in 358  is 16													||
+//	==========================================================================================
+	
+	int num;
+	short hundred = 100, ten = 10, d3, d2, d1, sumInt;
+	cout << "Enter a 3 digit int number : ";
+	cin >> num;					// XYZ
+
+	_asm {
+
+		//d3
+		mov eax, num;			// eax = XYZ
+		cwd;					// dx:ax = num ---> eax from 32bits become 64 bits
+		idiv hundred;			// eax / 100 --> ax = X, dx = YZ
+		mov d3, ax;				// d3 = ax = X
+		
+		//d2
+		mov ax, dx;				// ax = dx
+		cwd;					// dx:ax = YZ ---> ax from 8 bit become 16 bit
+		idiv ten;				// ax = Y, dx = Z
+		mov d2, ax;				// d2 = ax = Y
+		
+		//d1
+		mov d1, dx;				// d1 = dx = Z
+
+		//sum
+		mov ax, dx;
+		add ax, d2;
+		add ax, d3;
+
+		mov sumInt, ax;
+
+	} // End _asm
+	
+	cout << "The total og degits in " << num << " is " << sumInt << "\n\n";
+
+	system("pause");
+	return 0;
+}
