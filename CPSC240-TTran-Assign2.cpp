@@ -12,7 +12,6 @@ int main() {
 //	||		How many sandwiches  : 3						||								||
 //	||		Your total bill $18							||									||
 //	=========================================================================================
-
 	short drinkPrice = 2, sandwichPrice = 4, numDrink, numSandwich, total;
 	cout << "Drink................ $" << drinkPrice << endl;
 	cout << "Sandwiches........... $" << sandwichPrice << endl;
@@ -28,7 +27,7 @@ int main() {
 		imul bx, numSandwich;		// ebx = 4*numSandwich
 		add ax, bx;			// eax = 2*numDrink + 4*numSandwich
 		mov total, ax;			// total = 2*numDrink + 4*numSandwich
-	}
+	} // End _asm
 
 	cout << "Your total bill: $" << total << "\n\n" ;
 
@@ -62,7 +61,6 @@ int main() {
 	cin >> rlength >> rwidth;
 
 	_asm {
-
 		// Calculate triangle area
 		mov eax, h;				// ax = h
 		imul eax, c;				// ax = h * c
@@ -85,8 +83,7 @@ int main() {
 		mov eax, rwidth;
 		//cdq;
 		imul rlength;
-		mov rArea, eax;
-		
+		mov rArea, eax;		
 	} // End _asm
 
 	cout << "Triangle \n";
@@ -106,7 +103,6 @@ int main() {
 //	||	Enter temperature in Fahrenheit : 95						||
 //	||	95 F⁰ is  35 C⁰									||
 //	==========================================================================================
-
 	short C, F;
 	int Fdegree, Cdegree;
 		cout << "Enter temperature in Fahrenheit: ";
@@ -128,12 +124,10 @@ int main() {
 //	||	4. Enter a 3 digit int number : 358						||
 //	||	The total of digits in 358  is 16						||
 //	==========================================================================================
-	
 	int num;
 	short hundred = 100, ten = 10, d2, d1, sumInt;
 	cout << "Enter a 3 digit int number : ";
 	cin >> num;			// XYZ
-
 	_asm {
 		//d2
 		mov eax, num;		// eax = XYZ
@@ -160,4 +154,4 @@ int main() {
 
 	system("pause");
 	return 0;
-}
+} // End main
