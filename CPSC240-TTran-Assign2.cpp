@@ -79,9 +79,9 @@ int main() {
 		add eax, rwidth;
 		imul two;
 		mov rPerimeter, eax;
+		
 		// Calculate rectangle area
 		mov eax, rwidth;
-		//cdq;
 		imul rlength;
 		mov rArea, eax;		
 	} // End _asm
