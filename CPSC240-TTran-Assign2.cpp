@@ -1,16 +1,15 @@
-﻿#include <iostream>
+#include <iostream>
 using namespace std;
-
 
 int main() {
 	
 //	=========================================================================================
 //	||	1.	All variables are SHORT TYPE						||							||
 //	||		--------------------MENU------------------				||						||
-//	||		Drinks………………………….$2							||									||
-//	||		Sandwiches…………………….$4							||								||
-//	||		How many drinks ? 3							||									||
-//	||		How many sandwiches : 3							||								||
+//	||		Drinks................$2						||									||
+//	||		Sandwiches............$4						||								||
+//	||		How many drinks	     : 3						||									||
+//	||		How many sandwiches  : 3						||								||
 //	||		Your total bill $18							||									||
 //	=========================================================================================
 
@@ -38,7 +37,7 @@ int main() {
 //	||											||
 //	||			/|\                 ------------------------			||
 //	||		       / | \                |                      |			||
-//	||		 a    /  |  \  b            |                      | width		||
+//	||		  a   /  |  \  b            |                      | width		||
 //	||		     / h |   \              |                      |			||
 //	||		    /    |    \             |                      |			||
 //	||	    	    ------------ 	    ------------------------			||
@@ -65,17 +64,17 @@ int main() {
 	_asm {
 
 		// Calculate triangle area
-		mov eax, h;					// ax = h
+		mov eax, h;				// ax = h
 		imul eax, c;				// ax = h * c
 		cdq;
-		idiv two;					// ax = (h * c)/2
+		idiv two;				// ax = (h * c)/2
 		mov tArea, eax;				// tArea = (h * c)/2
 
 		// Calculate triangle perimeter
-		mov eax, a;					// ax = a
-		add eax, b;					// ax = a + b
-		add eax, c;					// ax = a + b + c
-		mov tPerimeter, eax;		// tArea = a + b + c
+		mov eax, a;				// ax = a
+		add eax, b;				// ax = a + b
+		add eax, c;				// ax = a + b + c
+		mov tPerimeter, eax;			// tArea = a + b + c
 
 		// Calculate rectangle perimeter
 		mov eax, rlength;
@@ -88,7 +87,7 @@ int main() {
 		imul rlength;
 		mov rArea, eax;
 		
-	}
+	} // End _asm
 
 	cout << "Triangle \n";
 	cout << "\t Area ............. " << tArea << endl;
@@ -112,17 +111,16 @@ int main() {
 	int Fdegree, Cdegree;
 		cout << "Enter temperature in Fahrenheit: ";
 		cin >> Fdegree;
-	_asm {
-		
-		mov eax, Fdegree;				// eax = Fdegree
-		mov ebx, 32;					// ebx = 32
-		sub eax, ebx;					// eax = eax - ebx --> F-32
-		mov ebx, 5;						// ebx = 5
-		imul ebx;						// eax = eax * 5	-->5(F-32)
+	_asm {		
+		mov eax, Fdegree;	// eax = Fdegree
+		mov ebx, 32;		// ebx = 32
+		sub eax, ebx;		// eax = eax - ebx --> F-32
+		mov ebx, 5;		// ebx = 5
+		imul ebx;		// eax = eax * 5   -->5(F-32)
 		mov ebx, 9;
-		idiv ebx;						// eax = eax / 9
+		idiv ebx;		// eax = eax / 9
 		mov Cdegree, eax;
-	}
+	} // End _asm
 
 	cout << Fdegree << " F" << char(248) << " is " << Cdegree << " C" << char(248) << "\n\n";
 
@@ -132,31 +130,27 @@ int main() {
 //	==========================================================================================
 	
 	int num;
-	short hundred = 100, ten = 10, d3, d2, d1, sumInt;
+	short hundred = 100, ten = 10, d2, d1, sumInt;
 	cout << "Enter a 3 digit int number : ";
-	cin >> num;					// XYZ
+	cin >> num;			// XYZ
 
 	_asm {
-
-		//d3
-		mov eax, num;			// eax = XYZ
-		cwd;					// dx:ax = num ---> eax from 32bits become 64 bits
-		idiv hundred;			// eax / 100 --> ax = X, dx = YZ
-		mov d3, ax;				// d3 = ax = X
-		
 		//d2
-		mov ax, dx;				// ax = dx
-		cwd;					// dx:ax = YZ ---> ax from 8 bit become 16 bit
-		idiv ten;				// ax = Y, dx = Z
-		mov d2, ax;				// d2 = ax = Y
+		mov eax, num;		// eax = XYZ
+		cwd;			// dx:ax = num
+		idiv hundred;		// eax / 100 --> ax = X, dx = YZ
+		mov d2, ax;		// d2 = ax = X
 		
 		//d1
-		mov d1, dx;				// d1 = dx = Z
-
-		//sum
-		mov ax, dx;
-		add ax, d2;
-		add ax, d3;
+		mov ax, dx;		// ax = dx
+		cwd;			// dx:ax = YZ
+		idiv ten;		// ax = Y, dx = Z
+		mov d1, ax;		// d2 = ax = Y
+		
+		//d0 = dx, sum
+		mov ax, dx;		// d0 = dx = Z	
+		add ax, d1;		// ax = Z + d1
+		add ax, d2;		// ax = Z + d1 + d2
 
 		mov sumInt, ax;
 
