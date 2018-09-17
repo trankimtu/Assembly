@@ -21,12 +21,12 @@ int main() {
 	cin >> numSandwich;
 
 	_asm {
-		mov ax, drinkPrice;		// eax = 2
-		imul ax, numDrink;		// eax = 2*numDrink
-		mov bx, sandwichPrice;		// ebx = 4
-		imul bx, numSandwich;		// ebx = 4*numSandwich
-		add ax, bx;			// eax = 2*numDrink + 4*numSandwich
-		mov total, ax;			// total = 2*numDrink + 4*numSandwich
+		mov  ax, drinkPrice;		// ax = 2
+		imul ax, numDrink;		// ax = 2*numDrink
+		mov  bx, sandwichPrice;		// bx = 4
+		imul bx, numSandwich;		// bx = 4*numSandwich
+		add  ax, bx;			// ax = 2*numDrink + 4*numSandwich
+		mov  total, ax;			// total = 2*numDrink + 4*numSandwich
 	} // End _asm
 
 	cout << "Your total bill: $" << total << "\n\n" ;
@@ -62,16 +62,16 @@ int main() {
 
 	_asm {
 		// Calculate triangle area
-		mov eax, h;				// ax = h
-		imul eax, c;				// ax = h * c
+		mov  eax, h;				// eax   = h
+		imul eax, c;				// eax   = h * c
 		cdq;
-		idiv two;				// ax = (h * c)/2
-		mov tArea, eax;				// tArea = (h * c)/2
+		idiv two;				// eax   = (h * c)/2
+		mov  tArea, eax;			// tArea = (h * c)/2
 
 		// Calculate triangle perimeter
-		mov eax, a;				// ax = a
-		add eax, b;				// ax = a + b
-		add eax, c;				// ax = a + b + c
+		mov eax, a;				// eax   = a
+		add eax, b;				// eax   = a + b
+		add eax, c;				// eax   = a + b + c
 		mov tPerimeter, eax;			// tArea = a + b + c
 
 		// Calculate rectangle perimeter
@@ -150,7 +150,7 @@ int main() {
 
 	} // End _asm
 	
-	cout << "The total og degits in " << num << " is " << sumInt << "\n\n";
+	cout << "The total of degits in " << num << " is " << sumInt << "\n\n";
 
 	system("pause");
 	return 0;
