@@ -46,11 +46,11 @@ int main() {
 //	||	Enter the values of a, b, c, and h  for the triangle : 4  6   9   10		||
 //	||	Enter the length and the width of the rectangle : 15  10			||
 //	||	Triangle									||
-//	||	Area……………………………………45								||
-//	||	Perimeter…………………………..19								||
+//	||	Area.................45								||
+//	||	Perimeter............19								||
 //	||	Rectangle									||
-//	||	Area………………………………….150								||
-//	||	Perimeter ………………………….50								||
+//	||	Area................150								||
+//	||	Perimeter............50								||
 //      =========================================================================================
 	int a, b, c, h, two = 2, rlength, rwidth;
 	int tArea, tPerimeter, rArea, rPerimeter;
