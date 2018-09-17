@@ -5,13 +5,13 @@ using namespace std;
 int main() {
 	
 //	=========================================================================================
-//	||	1.	All variables are SHORT TYPE													||
-//	||		--------------------MENU------------------										||
-//	||		Drinks………………………….$2																||
-//	||		Sandwiches…………………….$4															||
-//	||		How many drinks ? 3																||
-//	||		How many sandwiches : 3															||
-//	||		Your total bill $18																||
+//	||	1.	All variables are SHORT TYPE						||							||
+//	||		--------------------MENU------------------				||						||
+//	||		Drinks………………………….$2							||									||
+//	||		Sandwiches…………………….$4							||								||
+//	||		How many drinks ? 3							||									||
+//	||		How many sandwiches : 3							||								||
+//	||		Your total bill $18							||									||
 //	=========================================================================================
 
 	short drinkPrice = 2, sandwichPrice = 4, numDrink, numSandwich, total;
@@ -23,37 +23,36 @@ int main() {
 	cin >> numSandwich;
 
 	_asm {
-		mov ax, drinkPrice;			// eax = 2
-		imul ax, numDrink;				// eax = 2*numDrink
-		mov bx, sandwichPrice;			// ebx = 4
-		imul bx, numSandwich;			// ebx = 4*numSandwich
-		add ax, bx;					// eax = 2*numDrink + 4*numSandwich
-		mov total, ax;					// total = 2*numDrink + 4*numSandwich
+		mov ax, drinkPrice;		// eax = 2
+		imul ax, numDrink;		// eax = 2*numDrink
+		mov bx, sandwichPrice;		// ebx = 4
+		imul bx, numSandwich;		// ebx = 4*numSandwich
+		add ax, bx;			// eax = 2*numDrink + 4*numSandwich
+		mov total, ax;			// total = 2*numDrink + 4*numSandwich
 	}
 
 	cout << "Your total bill: $" << total << "\n\n" ;
 
-//  =========================================================================================
-//	||	2.     All sides are INT TYPE														||
-//	||																						||
-//	||				/|\                 ------------------------							||
-//	||			   / | \                |                      |							||
-//	||		 a    /  |  \  b            |                      | width						||
-//	||			 / h |   \              |                      |							||
-//	||			/    |    \             |                      |							||
-//	||	    	------------ 			------------------------							||
-//	||			c                           length											||
-//	||																						||
-//	||	Enter the values of a, b, c, and h  for the triangle : 4  6   9   10				||
-//	||	Enter the length and the width of the rectangle : 15  10							||
-//	||	Triangle																			||
-//	||	Area……………………………………45																||
-//	||	Perimeter…………………………..19																||
-//	||	Rectangle																			||
-//	||	Area………………………………….150																||
-//	||	Perimeter ………………………….50																||
-//	||	95 F⁰ is  35 C⁰																		||
-//   =========================================================================================
+//      =========================================================================================
+//	||	2.     All sides are INT TYPE							||
+//	||											||
+//	||			/|\                 ------------------------			||
+//	||		       / | \                |                      |			||
+//	||		 a    /  |  \  b            |                      | width		||
+//	||		     / h |   \              |                      |			||
+//	||		    /    |    \             |                      |			||
+//	||	    	    ------------ 	    ------------------------			||
+//	||			c                           length				||
+//	||											||
+//	||	Enter the values of a, b, c, and h  for the triangle : 4  6   9   10		||
+//	||	Enter the length and the width of the rectangle : 15  10			||
+//	||	Triangle									||
+//	||	Area……………………………………45								||
+//	||	Perimeter…………………………..19								||
+//	||	Rectangle									||
+//	||	Area………………………………….150								||
+//	||	Perimeter ………………………….50								||
+//      =========================================================================================
 	int a, b, c, h, two = 2, rlength, rwidth;
 	int tArea, tPerimeter, rArea, rPerimeter;
 
@@ -102,12 +101,12 @@ int main() {
 	cout << "\t Perimeter ........ " << rPerimeter << "\n\n";
 
 //	=========================================================================================
-//	||	3.Use the following formula for the temperature conversion : C = 5(F - 32) / 9,		||
-//	||	C and F are type short																||
-//	||	Enter temperature in Fahrenheit : 95												||
-//	||	95 F⁰ is  35 C⁰																		||
+//	||	3.Use the following formula for the temperature conversion : 			||
+//	||	C = 5(F - 32) / 9,								||
+//	||	C and F are type short								||
+//	||	Enter temperature in Fahrenheit : 95						||
+//	||	95 F⁰ is  35 C⁰									||
 //	==========================================================================================
-
 
 	short C, F;
 	int Fdegree, Cdegree;
@@ -127,9 +126,9 @@ int main() {
 
 	cout << Fdegree << " F" << char(248) << " is " << Cdegree << " C" << char(248) << "\n\n";
 
-//	=========================================================================================
-//	||	4. Enter a 3 digit int number : 358													||
-//	||	The total of digits in 358  is 16													||
+//	==========================================================================================
+//	||	4. Enter a 3 digit int number : 358						||
+//	||	The total of digits in 358  is 16						||
 //	==========================================================================================
 	
 	int num;
